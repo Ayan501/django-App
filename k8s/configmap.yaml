@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-blog-config
+  namespace: django-blog
+data:
+  DJANGO_SETTINGS_MODULE: config.settings.production
+  DJANGO_ALLOWED_HOSTS: api.example.com
+  POSTGRES_ENGINE: django.db.backends.postgresql
+  POSTGRES_DB: django_blog
+  POSTGRES_USER: django_blog
+  POSTGRES_HOST: postgres.default.svc.cluster.local
+  POSTGRES_PORT: "5432"
+  CORS_ALLOWED_ORIGINS: https://your-netlify-site.netlify.app

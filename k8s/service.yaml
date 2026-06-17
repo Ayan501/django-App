@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: django-blog
+  namespace: django-blog
+spec:
+  type: ClusterIP
+  selector:
+    app: django-blog
+  ports:
+    - port: 80
+      targetPort: 8000

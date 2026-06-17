@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-blog
+  namespace: django-blog
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: django-blog
+  template:
+    metadata:
+      labels:
+        app: django-blog
+    spec:
+      containers:
+        - name: backend
+          image: your-dockerhub-username/django-blog:latest
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: django-blog-config
+            - secretRef:
+                name: django-blog-secret
+          ports:
+            - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /api/readiness/
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api/health/
+              port: 8000
+            initialDelaySeconds: 15
+            periodSeconds: 20
