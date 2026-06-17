@@ -84,8 +84,8 @@ type SignupPayload = {
 };
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api/";
-
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://django-app-1-c2is.onrender.com/api/";
 const activityData = [
   { label: "Mon", posts: 1, comments: 2 },
   { label: "Tue", posts: 2, comments: 4 },
